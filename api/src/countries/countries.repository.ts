@@ -4,7 +4,7 @@ import { Repository } from "typeorm";
 import { CountryEntity } from "./country.entity";
 
 
-export class CountriesRepository extends CustomRepository {
+export class CountriesRepository extends CustomRepository<CountryEntity> {
   constructor(
     @InjectRepository(CountryEntity)
     protected repository: Repository<CountryEntity>
@@ -18,7 +18,7 @@ export class CountriesRepository extends CustomRepository {
       .getOne();
   }
 
-  async findAllAndRelations() {
-    return this.repository.find({ relations:['places'], order: { name: 'ASC' } });
+  async findAllAndRelations(name: string) {
+    return this.repository.find({ where: { name }, relations:['places'], order: { name: 'ASC' } });
   }
 }

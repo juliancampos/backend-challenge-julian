@@ -1,19 +1,16 @@
-export class CustomRepository {
+import { Repository } from "typeorm";
+
+export class CustomRepository<T> {
   protected repository: any;
-  constructor(repository) {
+  constructor(repository: Repository<T>) {
     this.repository = repository;
   }
 
-  // constructor(protected entity: Function) {
-  //   this.repository = getRepositoryToken(entity);
-  //   console.log('tttttt ', this.repository.find)
-  // }
-
-  async create(data) {
+  async create(data: Partial<T>) {
     return await this.repository.create(data);
   }
 
-  async save(data) {
+  async save(data: Partial<T>) {
     return this.repository.save(data);
   }
 
@@ -21,7 +18,7 @@ export class CustomRepository {
     return this.repository.findOne({ where: { id }});
   }
 
-  async dataMerge(data, values) {
+  async dataMerge(data: Partial<T>, values: Partial<T>) {
     return this.repository.merge(data, values);
   }
 

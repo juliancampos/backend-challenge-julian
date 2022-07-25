@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { CountriesService } from './countries.service';
 import { CreateCountryDto } from '../dto/create-country.dto';
 import { ReturnCountryDto } from '../dto/return-country.dto';
+import { query } from 'express';
 
 @Controller('api/countries')
 export class CountriesController {
@@ -17,7 +18,7 @@ export class CountriesController {
   }
 
   @Get()
-  async index() {
-    return await this.countryService.findAll();
+  async index(@Query() query: { name: string }) {
+    return await this.countryService.findAll(query.name);
   }
 }

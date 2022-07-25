@@ -13,8 +13,8 @@ export class PlacesService {
     private placeRepository: PlacesRepository
   ) {}
 
-  async findAll() {
-    return await this.placeRepository.findAllAndRelations();
+  async findAll(local: string) {
+    return await this.placeRepository.findAllAndRelations(local);
   }
 
   async createPlace(createPlaceDto: CreatePlaceDto): Promise<any> {
@@ -27,7 +27,7 @@ export class PlacesService {
 
     try {
       place.country = country;
-      return await this.placeRepository.save(/*await this.placeRepository.create(place)*/place);
+      return await this.placeRepository.save(place);
     } catch (error) {
       if (error.code === '23505') {
         return this.adapterResponse.sendException(

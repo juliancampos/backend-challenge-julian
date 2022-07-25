@@ -4,7 +4,7 @@ import { Repository } from "typeorm";
 import { PlaceEntity } from "./place.entity";
 
 
-export class PlacesRepository extends CustomRepository {
+export class PlacesRepository extends CustomRepository<PlaceEntity> {
   constructor(
     @InjectRepository(PlaceEntity)
     protected repository: Repository<PlaceEntity>
@@ -16,7 +16,8 @@ export class PlacesRepository extends CustomRepository {
     return this.repository.findOne({ where: { id } });
   }
 
- async findAllAndRelations () {
-   return await this.repository.find({ relations: ['country'], order: { meta: 'asc' } });
+ async findAllAndRelations (local: string) {
+
+   return await this.repository.find({ where: { local }, relations: ['country'], order: { meta: 'asc' } });
  }
 }

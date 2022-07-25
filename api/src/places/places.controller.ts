@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Query } from '@nestjs/common';
 import { CreatePlaceDto } from '../dto/create-place.dto';
 import { ReturnPlaceDto } from '../dto/return-place.dto';
 import { UpdatePlaceDto } from '../dto/update-place.dto';
@@ -9,8 +9,13 @@ export class PlacesController {
   constructor(private placesService: PlacesService) {}
 
   @Get()
-  async index() {
-    return await this.placesService.findAll();
+  async index(@Query() query: { local: string }) {
+    return await this.placesService.findAll(query.local);
+  } 
+
+  @Get(':id')
+  async getOne(@Param('id', new ParseUUIDPipe()) id: string): Promise<any> {
+    return await this.placesService.findOne(id);
   } 
 
   @Post()

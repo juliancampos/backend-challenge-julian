@@ -24,8 +24,8 @@ export class CountriesService {
     }
   }
 
-  async findAll() {
-    return await this.countryRepository.findAllAndRelations();
+  async findAll(name: string) {
+    return await this.countryRepository.findAllAndRelations(name);
   }
 
   async findOne(id: string) {
