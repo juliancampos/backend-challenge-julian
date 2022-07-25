@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  db-postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: clubPetro
+    container_name: 'db-postgres'
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pg-data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  api-service:
+    container_name: 'api-service'
+    depends_on:
+      - db-postgres
+    build:
+      context: ./api
+      dockerfile: './dockerfile'
+    ports: 
+      - 3000:3000
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
