@@ -6,7 +6,7 @@ api desenvolvida para registrar lugares para se visitar.
 
 ## Instalação - Local
 ```bash
-$ cd api-service
+$ cd api
 $ npm install
 ```
 
@@ -36,6 +36,47 @@ $ npm run test
 $ npm run test:cov
 ```
 
+## Serviço disponível no google cloud
+```
+url: https://projetoclubpetro.uc.r.appspot.com
+```
+
+## Rotas disponíveis
+```
+1. listar países: /api/countries
+metódo: GET
+```
+
+```
+2. listar locais: /api/places
+metódo: GET
+```
+
+```
+3. registrar um novo local: /api/places
+metódo: POST
+
+body:
+  - countryId
+  - local
+  - meta (mm/aaaa)
+```
+
+```
+4. atualizar um local: /api/places/placeId
+metódo: PATCH
+
+body:
+  - local
+  - meta (mm/aaaa)
+```
+
+```
+5. remover um local: /api/places/:placeId
+metódo: DELETE
+```
+
+
 ## Tecnologias utilizadas
 
 - [Nest](https://github.com/nestjs/nest) - Framework base para o desenvolvimento da aplicação
@@ -51,3 +92,5 @@ $ npm run test:cov
 - Author: Julian Oliveira Campos
 - Email: julian.ocampos@hotmail.com
 - [Linkedin](https://www.linkedin.com/in/julian-campos/)
+
+
