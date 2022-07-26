@@ -17,7 +17,7 @@ export class CountriesController {
   }
 
   @Get()
-  async index(@Query() query: { name: string }) {
-    return await this.countryService.findAll(query.name);
+  async index(@Query() query?: { name: string }) {
+    return await this.countryService.findAll(query?.name);
   }
 }

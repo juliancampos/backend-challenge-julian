@@ -24,7 +24,7 @@ export class CountriesService {
     }
   }
 
-  async findAll(name: string) {
+  async findAll(name?: string) {
     return await this.countryRepository.findAllAndRelations(name);
   }
 

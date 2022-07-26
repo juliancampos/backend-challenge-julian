@@ -13,7 +13,7 @@ export class PlacesService {
     private placeRepository: PlacesRepository
   ) {}
 
-  async findAll(local: string) {
+  async findAll(local?: string) {
     return await this.placeRepository.findAllAndRelations(local);
   }
 

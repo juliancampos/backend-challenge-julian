@@ -9,8 +9,8 @@ export class PlacesController {
   constructor(private placesService: PlacesService) {}
 
   @Get()
-  async index(@Query() query: { local: string }) {
-    return await this.placesService.findAll(query.local);
+  async index(@Query() query?: { local: string }) {
+    return await this.placesService.findAll(query?.local);
   } 
 
   @Get(':id')
