@@ -4,6 +4,19 @@
 
 api desenvolvida para registrar lugares para se visitar.
 
+## Configuração
+Informar os dados de acesso no arquivo .env
+```
+DB_HOST
+DB_PASSWORD
+DB_USERNAME
+DB_PORT
+DB_DATABASENAME
+DB_TYPE
+PORT
+```
+
+
 ## Instalação - Local
 ```bash
 $ cd api
@@ -45,11 +58,13 @@ url: https://projetoclubpetro.uc.r.appspot.com
 ```
 1. listar países: /api/countries
 metódo: GET
+query: [name] Opcional
 ```
 
 ```
 2. listar locais: /api/places
 metódo: GET
+query: [local] Opcional
 ```
 
 ```

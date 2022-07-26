@@ -2,7 +2,6 @@ import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { CountriesService } from './countries.service';
 import { CreateCountryDto } from '../dto/create-country.dto';
 import { ReturnCountryDto } from '../dto/return-country.dto';
-import { query } from 'express';
 
 @Controller('api/countries')
 export class CountriesController {
